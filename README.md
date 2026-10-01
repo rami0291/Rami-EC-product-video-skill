@@ -1,110 +1,145 @@
-# Rami-EC-product-video-skill
+<div align="center">
 
-**把商品照片和规格书交给 AI，做出一支讲得清楚、能上架的跨境电商商品视频。**
+# Rami EC Product Video Skill
 
-面向跨境电商的实物商品，默认按 Amazon 各站点（US / UK / DE / FR / JP）的要求制作：整理有出处的卖点、按语言写文案、处理商品照片、做动画、写配乐、配音效，最后导出视频和可继续修改的工程。一条时间线可以导出多个语言版本，分别上传到不同站点。
+**Turn product photos and spec sheets into clear, listing-ready e-commerce product videos — with an AI agent.**
 
-重点是三件事：**看起来就是这件商品，一看就知道它怎么用，说的每句话都有依据。**
+English · [简体中文](README.zh-CN.md)
 
-让模型直接从素材一路做到渲染好的 MP4，结果很不如人意。正确做法是初期降低 effort，多加人工判断，特别是在模型理解商品的正确用法、安装位置和尺寸之前：先确认事实表和方向，再出几张静帧给用户看，然后才做全片。
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
+![Agent Skill](https://img.shields.io/badge/Agent%20Skill-Claude%20Code%20%7C%20Codex-8A2BE2)
+![Languages](https://img.shields.io/badge/copy-EN%20%7C%20JA%20%7C%20DE%20%7C%20FR%20%7C%20ZH-2ea44f)
+![Amazon](https://img.shields.io/badge/Amazon-US%20%7C%20UK%20%7C%20DE%20%7C%20FR%20%7C%20JP-FF9900)
 
-虽说支持多语言，但一次建议最多搞两个语言，再多就复制工程以后去修改。
+</div>
 
-## 怎么开始
+---
 
-把本文件夹放进 AI 工具的 skills 目录（Claude Code：`~/.claude/skills/Rami-EC-product-video-skill`；Codex：`~/.agents/skills/Rami-EC-product-video-skill`），重新打开会话，然后说：
+An agent skill for **cross-border e-commerce sellers**. Hand it real product photos, spec sheets and listing text; it builds a sourced fact sheet, writes copy in each target language, animates the real photos with code, composes original music, places action sound effects, and exports an MP4 per language plus a fully editable project.
 
-> 用 Rami-EC-product-video-skill，给我们的 65W 氮化镓充电器做一支 Amazon 商品视频，出英文和德文两个版本。素材在 D:\Products\charger-65w，横版 45 秒。先整理卖点和事实，给我看几张关键画面，再继续做动画和声音。
+It is built around three promises:
 
-首次使用会检查 Node.js、Python、FFmpeg 和渲染依赖，缺什么再按官方安装方式补什么。
+- **It looks like the actual product.** Product shots only use real photos — no AI-generated or repainted product visuals.
+- **One glance tells you how it's used.** Every visual device must trace back to something the product really has.
+- **Every claim has a source.** Numbers, certifications and efficacy claims come from a fact sheet with file-and-page references.
 
-## 支持什么
+> [!TIP]
+> Letting a model go straight from raw assets to a rendered MP4 gives poor results. Start at lower effort and keep a human in the loop — especially until the model understands how the product is used, where it mounts and how big it is. Confirm the fact sheet and direction first, review a few stills, then render the full film.
 
-| | 内置 | 说明 |
+## Highlights
+
+| | Built in | What it covers |
 | --- | --- | --- |
-| **语言** | English（默认）、日本語、Deutsch、Français、简体中文 | 每种语言有自己的文案写法、排版与断行规则、阅读速度；开工时问做哪些语言 |
-| **渠道** | Amazon US / UK / DE / FR / JP | 各站点的常见拒审措辞和当地法规要点（景品表示法、FTC、UWG、Loi Toubon、欧盟环保说法新规等） |
-| **品类** | 摩托车周边、3C 电子 / 配件、美妆 / 个护 | 事实表字段、必须有出处的说法、品类禁区（如化妆品不能宣称治疗）、拍摄风险、母题来源 |
+| **Languages** | English (default), 日本語, Deutsch, Français, 简体中文 | Per-language copywriting, typography, line-breaking and reading speed. Asked at project start. |
+| **Channels** | Amazon US / UK / DE / FR / JP | Common rejection wording and local rules (FTC, Japan's Premiums and Representations Act, German UWG, France's Loi Toubon, the EU green-claims rules applying from Sept 2026…) |
+| **Categories** | Motorcycle accessories, consumer electronics, beauty & personal care | Extra fact fields, claims that need evidence, category no-gos (e.g. cosmetics can't claim to treat), shooting risks, motif sources |
 
-其他品类用 `other` 加 [品类笔记模板](references/categories/_template.md) 补；加语言或站点同样是"一份笔记 + 一段规则数据 + 一条测试"。
+One timeline, many language versions: picture, music and SFX are shared; only on-screen text changes per version. Layout is designed for the longest language.
 
-## 它能帮你做什么？
+> [!NOTE]
+> Multi-language works, but two languages per project is the sweet spot. For more, duplicate the project and adapt it.
 
-| 你手里的东西 | 它会怎么处理 |
-| --- | --- |
-| 规格书、成分表、测试报告、商品页文字 | 整理成带出处的事实表，挑出顾客在意的卖点，按购买决策排顺序 |
-| 白底商品图、实拍照片 | 检查分辨率和抠图，按放大上限取景，做视差、光泽扫过、标注线 |
-| 使用场景照 | 遮挡第三方 Logo、车牌和屏幕上的个人信息，压低配角，让商品成为主角 |
-| 品牌 Logo 和品牌色 | 沿用品牌识别；没有成熟 VI 时用中性包装 |
-| 几句很省略的卖点 | 用每种语言分别写成完整的句子：怎么用、结果是什么 |
-| 一支只有画面的片子 | 用代码写配乐，给扣合、吸附、按压等动作配独立音效，关键音效出现时压低音乐 |
+Need another category, language or marketplace? Each is **one note + one block of rule data + one test** — see [Extending](#extending).
 
-## 三种风格
+## How it works
 
-| 模式 | 适合什么情况 |
-| --- | --- |
-| **品牌风格 `brand`** · 推荐 | 品牌有 Logo、品牌色和既有设计，希望视频一眼就是自己的品牌 |
-| **默认风格 `default`** | 品牌素材不全，用中性包装（深炭灰 / 水泥灰 + 从商品主色取的强调色）开始 |
-| **混合 `hybrid`** | 保留品牌 Logo 和品牌色，外层排版和节奏为传播重新设计 |
-
-## 怎么提需求，比较容易一次做好？
-
-把**卖哪件商品、给谁看、发在哪些站点、要哪些语言**说清楚就够了。
-
-> 介绍这款磁吸无线充电宝，重点讲 Qi2 磁吸和 10000mAh 容量。目标是通勤的 iPhone 用户，发 Amazon 美国和日本，横版 30 秒。沿用品牌风格。
-
-> 这支保湿精华要出英、法、德三个版本，先整理成分和功效依据，哪些说法不能用先告诉我。
-
-> 先整理卖点、分镜和四张关键画面，等我确认后再做完整动画。
-
-> 安装那一段太慢了，压缩到 4 秒。扣上去的时候加一个清楚的"咔"声，音乐让一下。
-
-## 从素材到成片
-
-1. **先定范围。** 确认商品、品类、卖点、目标顾客、语言版本、各版本的发布站点、画幅和风格。
-2. **整理事实与素材。** 从规格书建事实表（每项有出处），审核照片的分辨率、抠图和场景照里的 Logo / 个人信息。
-3. **先定方向。** 拆解参考，提炼商品气质，提出三个差异明显的方向并选定；每个视觉手法都要说得出"因为商品有什么"。版式按最长的语言设计。
-4. **逐镜头搭建。** GSAP 主时间轴编排动画，Three.js / canvas 做背景和效果层；每个镜头搭完就出静帧对照。
-5. **把声音配好。** 按分镜编曲，音效优先用真实的录音，实测落点后对齐动作并混音；所有语言版本共用。
-6. **审片与合规检查。** 每个版本看联系表、转场和全尺寸帧；按各站点和品类规则逐项核对。
-
-## 最后会拿到什么？
-
-- 每个语言版本一支可以上传的 **MP4**。
-- 一个可以继续修改、重新渲染的 **视频工程**。
-- 事实表、素材使用清单、声音来源和检查记录，方便以后追溯与调整。
-
-自动检查能发现部分结构、文件、时间线和措辞问题；文字是否好懂、画面是否舒服、声音是否合适，还需要实际观看和试听，非母语的版本最好请母语者读一遍。Amazon 的视频规则和各国法规会更新，内置的法规笔记不是法律意见，上传前以 Seller Central 和当地规定为准。
-
-## 需要什么环境？
-
-| 依赖 | 用途 |
-| --- | --- |
-| Node.js ≥ 22、npm | 运行浏览器渲染 |
-| Python ≥ 3.9 | 初始化工程、环境检查、混音和交付检查脚本 |
-| FFmpeg / ffprobe | 音频处理、视频编码和文件检查 |
-| Playwright Chromium | 静帧和逐帧渲染（WebGL 走 SwiftShader） |
-| GSAP、Three.js（可选） | 主时间轴动画、背景效果层（装在视频工程里） |
-| 各语言字体 | 例如 Inter、Noto Sans JP / SC（确认授权，放进视频工程） |
-
-依赖安装说明见 [入门与依赖检查](references/onboarding.md)。
-
-## 仓库里有什么？
-
-```text
-SKILL.md              工作流、硬约束和工具入口
-agents/               Codex 的展示信息
-references/           商品与品牌审计、素材处理、影片方向、视觉手法、分镜文案、渲染管线、
-                      配乐音效、混音验收、审片、依赖安装、案例复盘
-  categories/         品类笔记：摩托车周边、3C 电子、美妆个护、新品类模板
-  locales/            语言笔记：en、ja、de、fr、zh-Hans
-  channels/           渠道笔记：Amazon 通用与 US / UK / DE / FR / JP
-scripts/              初始化、环境检查、合成音效、音效落点测量、混音、交付检查
-  data/               语言、渠道、措辞、品类规则（JSON）
-tests/                脚本回归测试
+```mermaid
+flowchart LR
+    A[Scope<br/>product · category<br/>languages · channels] --> B[Fact sheet<br/>& photo audit]
+    B --> C[DIRECTION.md<br/>3 directions → 1<br/>shot list]
+    C --> D[Build shot by shot<br/>GSAP · Three.js<br/>stills review]
+    D --> E[Music & SFX<br/>measured sync<br/>ducking mix]
+    E --> F[Review & compliance<br/>per version]
+    F --> G[MP4 per language<br/>+ editable project]
 ```
 
-维护这个 skill 时运行：
+1. **Scope** — product, category, selling points, audience, language versions, marketplace per version, aspect ratio, style.
+2. **Facts & assets** — a fact sheet where every row cites its source; photos checked for resolution, cutouts, third-party logos and personal data.
+3. **Direction first** — break down references, distill the product's character, propose three distinct directions and pick one. Every device is written as *"because the product has X, we use Y."*
+4. **Build shot by shot** — a `seek(t)` runtime with a GSAP master timeline and Three.js / canvas layers, rendered frame by frame with Playwright; stills after each shot.
+5. **Sound** — original music arranged from shot boundaries; real recorded SFX first (snaps, zips, magnets, pumps), synthesized only for gaps; onsets measured and aligned within two frames; music ducks under key sounds.
+6. **Review & compliance** — contact sheets, transition strips and full-size frames for each version, then automated checks per language, channel and category.
+
+## Quick start
+
+Drop this folder into your agent's skills directory and restart the session:
+
+| Agent | Path |
+| --- | --- |
+| Claude Code | `~/.claude/skills/Rami-EC-product-video-skill` |
+| Codex | `~/.agents/skills/Rami-EC-product-video-skill` |
+
+Then ask:
+
+> Use Rami-EC-product-video-skill to make an Amazon product video for our 65W GaN charger, in English and German. Assets are in `D:\Products\charger-65w`. Landscape, 45 seconds. Sort out the selling points and facts first, show me a few key frames, then continue with animation and sound.
+
+On first run it checks Node.js, Python, FFmpeg and the render dependencies, and only installs what is missing.
+
+### Prompts that work well
+
+Say **what you sell, to whom, on which marketplaces, in which languages**:
+
+> A magnetic wireless power bank. Focus on Qi2 magnetic alignment and the 10,000 mAh capacity. Audience: commuting iPhone users. Amazon US and Japan, landscape, 30 s. Use our brand style.
+
+> This hydrating serum needs English, French and German versions. Organize the ingredients and efficacy evidence first, and tell me which claims we can't use.
+
+> The install segment drags — cut it to 4 seconds. Add a clear "click" when it snaps on, and duck the music there.
+
+## Three styles
+
+| Style | When to use |
+| --- | --- |
+| **`brand`** · recommended | The brand has a logo, colors and an existing look; the video should feel unmistakably theirs |
+| **`default`** | Brand assets are thin; start from a neutral package (charcoal / concrete grey + an accent taken from the product) |
+| **`hybrid`** | Keep the logo and brand colors, redesign layout and pacing for the video |
+
+## What you get
+
+- An upload-ready **MP4 for each language version**.
+- A **reproducible video project** you can keep editing and re-rendering.
+- Evidence files: fact sheet, asset usage list, audio sources and check reports.
+
+Automated checks catch structure, file, timeline and wording problems. Whether copy reads well, frames look good and sound feels right still needs real viewing and listening — ideally a native speaker reads each version. Amazon's rules and local laws change; the built-in notes are **not legal advice**, so confirm against Seller Central and local regulations before uploading.
+
+## Requirements
+
+| Dependency | Used for |
+| --- | --- |
+| Node.js ≥ 22, npm | Browser rendering |
+| Python ≥ 3.9 | Project init, environment check, mixing and delivery checks |
+| FFmpeg / ffprobe | Audio processing, video encoding, media inspection |
+| Playwright Chromium | Stills and frame-by-frame export (WebGL via SwiftShader) |
+| GSAP, Three.js (optional) | Master timeline animation, background effect layers (installed per project) |
+| Fonts per language | e.g. Inter, Noto Sans JP / SC (licensed, copied into the project) |
+
+See [onboarding](references/onboarding.md) for installation notes (in Chinese).
+
+## Repository layout
+
+```text
+SKILL.md              Workflow, hard constraints and tool entry points
+agents/               Codex display metadata
+references/           Product & brand audit, assets, direction, visual vocabulary, story & copy,
+                      render pipeline, music & SFX, mixing & QA, review, onboarding, case study
+  categories/         Category notes: motorcycle parts, electronics, beauty, template
+  locales/            Language notes: en, ja, de, fr, zh-Hans
+  channels/           Channel notes: Amazon common + US / UK / DE / FR / JP
+scripts/              Init, environment check, SFX synthesis, SFX landmarks, mixing, delivery check
+  data/               Locale, channel, wording and category rules (JSON)
+tests/                Regression tests
+```
+
+The skill's instructions and reference notes are written in Chinese; the agent produces copy in whichever languages you choose.
+
+## Extending
+
+| To add | Touch |
+| --- | --- |
+| A category | `references/categories/<name>.md` (from `_template.md`) + an entry in `scripts/data/categories.json` + a wording test |
+| A language | `references/locales/<locale>.md` + `scripts/data/locales.json` (reading rate, default font, placeholders) |
+| A marketplace | `references/channels/<channel>.md` + `scripts/data/channels.json` (+ patterns in `claims.json` if needed) |
+
+Run the tests before opening a PR:
 
 ```bash
 python3 -m unittest discover -s tests
@@ -112,6 +147,6 @@ python3 -m unittest discover -s tests
 
 ## License
 
-本 skill 修改自 [op7418/guizang-product-video-skill](https://github.com/op7418/guizang-product-video-skill)，原作品采用 GNU AGPL-3.0，修改版继续采用 **GNU AGPL-3.0**。分发时请附上 AGPL-3.0 全文（LICENSE）、保留原作者版权声明，并说明修改内容。
+Modified from [op7418/guizang-product-video-skill](https://github.com/op7418/guizang-product-video-skill) (a software-product promo skill), which is licensed under GNU AGPL-3.0. This modified version remains **GNU AGPL-3.0**. When redistributing, include the full license text ([LICENSE](LICENSE)), keep the original copyright notices, and state your changes.
 
-使用的商品照片、Logo、字体、第三方音乐或音效，依各自适用许可使用。
+Product photos, logos, fonts and any third-party music or sound effects used in a project are governed by their own licenses.
