@@ -1,0 +1,89 @@
+{
+  "en": {
+    "name": "English",
+    "doc": "references/locales/en.md",
+    "script": "latin",
+    "readingRate": 15,
+    "readingNote": "characters per second including spaces; on-screen subtitle convention, lower it when the picture is busy",
+    "defaultFont": "Inter",
+    "defaultAccent": null,
+    "defaultChannel": "amazon-us",
+    "disclaimer": "Image for illustration purposes only.",
+    "vague": ["next level", "game[- ]changer", "revolutionary", "like never before", "unleash", "elevate your", "redefin", "seamless experience", "the ultimate"],
+    "placeholders": {
+      "intro": {"headline": "What does it do?", "description": "Say what the product is in one sentence."},
+      "detail": {"headline": "Show the real product", "description": "Cut out the photo and move in until the material shows."},
+      "close": {"headline": "Close on the brand", "description": "Logo and product name."}
+    }
+  },
+  "de": {
+    "name": "Deutsch",
+    "doc": "references/locales/de.md",
+    "script": "latin",
+    "readingRate": 14,
+    "readingNote": "characters per second including spaces; German runs about 30% longer than English, lay out for it",
+    "defaultFont": "Inter",
+    "defaultAccent": null,
+    "defaultChannel": "amazon-de",
+    "disclaimer": "Symbolbild",
+    "longWord": 20,
+    "vague": ["revolutionär", "nächste[ns]? Level", "grenzenlos", "einzigartiges Erlebnis", "neu definiert", "Premium-Erlebnis"],
+    "placeholders": {
+      "intro": {"headline": "Was kann es?", "description": "In einem Satz sagen, was das Produkt ist."},
+      "detail": {"headline": "Das echte Produkt", "description": "Foto freistellen, nah an das Material heran."},
+      "close": {"headline": "Abschluss mit der Marke", "description": "Logo und Produktname."}
+    }
+  },
+  "fr": {
+    "name": "Français",
+    "doc": "references/locales/fr.md",
+    "script": "latin",
+    "readingRate": 14,
+    "readingNote": "characters per second including spaces; French runs about 15–20% longer than English",
+    "defaultFont": "Inter",
+    "defaultAccent": null,
+    "defaultChannel": "amazon-fr",
+    "disclaimer": "Photo non contractuelle",
+    "nbspBefore": true,
+    "vague": ["révolutionnaire", "inégalé", "nouvelle dimension", "expérience ultime", "sans limites", "redéfinit"],
+    "placeholders": {
+      "intro": {"headline": "À quoi ça sert ?", "description": "Dire en une phrase ce qu’est le produit."},
+      "detail": {"headline": "Le vrai produit", "description": "Détourer la photo, s’approcher de la matière."},
+      "close": {"headline": "Finir sur la marque", "description": "Logo et nom du produit."}
+    }
+  },
+  "ja": {
+    "name": "日本語",
+    "doc": "references/locales/ja.md",
+    "script": "cjk",
+    "readingRate": 6,
+    "readingNote": "characters per second, whitespace removed",
+    "defaultFont": "Noto Sans JP",
+    "defaultAccent": "en",
+    "defaultChannel": "amazon-jp",
+    "disclaimer": "※画像はイメージです",
+    "vague": ["新次元", "革命的", "圧倒的", "異次元", "ワンランク上", "思いのまま", "自由自在", "最高の体験", "ストレスフリー"],
+    "placeholders": {
+      "intro": {"headline": "この商品で、何ができる？", "description": "何の商品か、一文で伝える。", "accent": "What it does"},
+      "detail": {"headline": "実物の写真で見せる", "description": "写真を切り抜き、素材が見える所まで寄る。", "accent": "Real product"},
+      "close": {"headline": "ブランドで締める", "description": "ロゴと商品名で締める。", "accent": "Brand close"}
+    }
+  },
+  "zh-Hans": {
+    "name": "简体中文",
+    "doc": "references/locales/zh-Hans.md",
+    "script": "cjk",
+    "readingRate": 6,
+    "readingNote": "characters per second, whitespace removed",
+    "defaultFont": "Noto Sans SC",
+    "defaultAccent": "en",
+    "defaultChannel": "other",
+    "disclaimer": "图片仅供参考",
+    "vague": ["颠覆", "革命性", "全新体验", "极致体验", "随心所欲", "黑科技", "次世代", "天花板"],
+    "placeholders": {
+      "intro": {"headline": "它能做什么？", "description": "用一句话说清这是什么商品。", "accent": "What it does"},
+      "detail": {"headline": "用实拍照片展示", "description": "抠出商品，推近到能看清材质。", "accent": "Real product"},
+      "close": {"headline": "品牌落版", "description": "Logo 加商品名。", "accent": "Brand close"}
+    }
+  }
+}

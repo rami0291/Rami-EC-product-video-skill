@@ -1,0 +1,47 @@
+{
+  "amazon-us": {
+    "name": "Amazon.com (US)",
+    "doc": "references/channels/amazon-us.md",
+    "languages": ["en"],
+    "reject": ["url", "price", "promotion", "review", "ranking", "comparative", "guarantee"],
+    "caution": ["absolute", "timeSensitive", "green"]
+  },
+  "amazon-uk": {
+    "name": "Amazon.co.uk",
+    "doc": "references/channels/amazon-uk.md",
+    "languages": ["en"],
+    "reject": ["url", "price", "promotion", "review", "ranking", "comparative", "guarantee"],
+    "caution": ["absolute", "timeSensitive", "green"]
+  },
+  "amazon-de": {
+    "name": "Amazon.de",
+    "doc": "references/channels/amazon-de.md",
+    "languages": ["de"],
+    "languageNote": "German-speaking customers expect German on-screen copy; an English-only version should be a user decision",
+    "reject": ["url", "price", "promotion", "review", "ranking", "comparative", "guarantee"],
+    "caution": ["absolute", "timeSensitive", "green"]
+  },
+  "amazon-fr": {
+    "name": "Amazon.fr",
+    "doc": "references/channels/amazon-fr.md",
+    "languages": ["fr"],
+    "languageNote": "Loi Toubon: advertising in France must be in French",
+    "accentNote": "Loi Toubon: the foreign-language accent needs a French equivalent that is at least as legible",
+    "reject": ["url", "price", "promotion", "review", "ranking", "comparative", "guarantee"],
+    "caution": ["absolute", "timeSensitive", "green"]
+  },
+  "amazon-jp": {
+    "name": "Amazon.co.jp",
+    "doc": "references/channels/amazon-jp.md",
+    "languages": ["ja"],
+    "reject": ["url", "price", "promotion", "review", "ranking", "comparative", "guarantee"],
+    "caution": ["absolute", "timeSensitive", "green"]
+  },
+  "other": {
+    "name": "Other / internal review",
+    "doc": null,
+    "languages": [],
+    "reject": [],
+    "caution": ["absolute"]
+  }
+}

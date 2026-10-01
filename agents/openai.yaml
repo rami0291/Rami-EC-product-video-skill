@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rami EC product video skill"
+  short_description: "用真实商品照片和有出处的规格事实，以代码制作有配乐、有节奏、讲得清楚的跨境电商商品视频；支持英/中/日/德/法多语言版本和 Amazon 多站点"
+  default_prompt: "请使用 /Rami-EC-product-video-skill，为这件商品制作一支商品视频。先确认商品与品类、目标顾客、要做哪些语言版本（默认英语）和各自的发布站点，以及用品牌风格还是默认风格。如果用户没有讲清楚，就问道他讲清楚，用户不愿讲清楚，就用上司怼下属的语气问清楚他的需求再开始工作。"

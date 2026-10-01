@@ -1,0 +1,108 @@
+{
+  "_note": "Keyword hints for on-screen wording, matched case-insensitively per locale ('*' applies to every locale). False positives and misses are expected; a human reads every hit in context.",
+  "url": {
+    "label": "URL / QR / contact / external link",
+    "patterns": {
+      "*": ["https?://", "www\\.", "\\.(?:com|net|jp|de|fr|co\\.uk|cn)\\b", "\\bQR\\b"],
+      "en": ["official (?:site|store|website)", "follow us", "call us", "visit (?:our|us)"],
+      "de": ["offizielle[nrs]? (?:Website|Shop|Seite)", "folgen Sie", "besuchen Sie"],
+      "fr": ["site officiel", "suivez-nous", "rendez-vous sur"],
+      "ja": ["公式サイト", "公式ストア", "フォローして", "お問い合わせ"],
+      "zh-Hans": ["官网", "官方旗舰店", "关注我们", "扫码", "联系客服"]
+    }
+  },
+  "price": {
+    "label": "price",
+    "patterns": {
+      "*": ["[$£€¥￥]\\s*\\d"],
+      "en": ["\\d+(?:[.,]\\d+)?\\s*(?:USD|GBP|EUR|dollars?)\\b"],
+      "de": ["\\d+(?:,\\d+)?\\s*(?:€|Euro|EUR)\\b"],
+      "fr": ["\\d+(?:,\\d+)?\\s*(?:€|euros?|EUR)\\b"],
+      "ja": ["\\d[\\d,]*\\s*円"],
+      "zh-Hans": ["\\d+(?:\\.\\d+)?\\s*元"]
+    }
+  },
+  "promotion": {
+    "label": "promotion / call to buy",
+    "patterns": {
+      "en": ["\\bsale\\b", "\\bdiscount", "\\d+\\s*%\\s*off\\b", "free shipping", "limited[- ]time", "today only", "\\bcoupon", "buy now", "order now", "shop now"],
+      "de": ["\\bSale\\b", "Rabatt", "\\d+\\s*%\\s*reduziert", "versandkostenfrei", "kostenloser Versand", "nur heute", "zeitlich begrenzt", "Gutschein", "jetzt kaufen", "jetzt bestellen"],
+      "fr": ["\\bpromo", "\\bsoldes\\b", "réduction", "\\bremise\\b", "livraison gratuite", "offre limitée", "aujourd.hui seulement", "achetez maintenant", "commandez maintenant"],
+      "ja": ["セール", "割引", "\\d+\\s*%\\s*OFF", "送料無料", "期間限定", "今だけ", "クーポン", "ポイント\\d+倍", "今すぐ購入"],
+      "zh-Hans": ["促销", "打折", "折扣", "包邮", "限时", "特价", "优惠券", "立即购买", "秒杀", "\\d+(?:\\.\\d)?\\s*折"]
+    }
+  },
+  "review": {
+    "label": "review or rating",
+    "patterns": {
+      "*": ["★", "☆"],
+      "en": ["\\breviews?\\b", "\\d(?:\\.\\d)?\\s*stars?\\b", "top[- ]rated", "customers? love"],
+      "de": ["Bewertung", "Rezension", "\\d(?:,\\d)?\\s*Sterne", "Kundenliebling"],
+      "fr": ["avis clients?", "\\d(?:,\\d)?\\s*étoiles", "plébiscité"],
+      "ja": ["レビュー", "口コミ", "星\\s*\\d", "高評価"],
+      "zh-Hans": ["好评", "评价", "评分", "星级", "口碑"]
+    }
+  },
+  "ranking": {
+    "label": "ranking / No.1 / award",
+    "patterns": {
+      "*": ["No\\.?\\s*1\\b", "#\\s*1\\b"],
+      "en": ["number one", "best[- ]?sell", "top[- ]selling", "\\branked\\b", "amazon.s choice", "award[- ]winning"],
+      "de": ["Nr\\.?\\s*1\\b", "Nummer\\s*(?:1|eins)", "Bestseller", "meistverkauft", "Testsieger", "Platz\\s*1\\b"],
+      "fr": ["N°\\s*1\\b", "numéro\\s*(?:1|un)\\b", "meilleures? ventes?", "best[- ]?seller", "\\bélu\\b"],
+      "ja": ["ナンバーワン", "ランキング", "ベストセラー", "売上\\s*1位", "最安"],
+      "zh-Hans": ["第一名", "销量冠军", "排名", "爆款", "榜首", "TOP\\s*1"]
+    }
+  },
+  "absolute": {
+    "label": "absolute / superlative claim",
+    "patterns": {
+      "*": ["\\b100\\s*%"],
+      "en": ["\\bbest\\b", "\\bstrongest\\b", "\\bperfect\\b", "\\bultimate\\b", "unbreakable", "world.s first", "industry.s? first", "\\bguaranteed\\b", "\\bnever\\b"],
+      "de": ["\\bbeste[nmrs]?\\b", "stärkste", "\\bperfekt", "unzerstörbar", "weltweit erste", "einzigartig", "garantiert"],
+      "fr": ["\\bmeilleure?s?\\b", "le plus (?:solide|puissant|résistant)", "\\bparfait", "indestructible", "premier au monde", "\\bunique\\b", "garanti"],
+      "ja": ["最強", "最高", "究極", "完璧", "絶対", "業界初", "世界初", "日本初"],
+      "zh-Hans": ["最[好佳强高优]", "顶级", "极致", "完美", "唯一", "首个", "首款", "绝对", "永久", "国家级", "世界级"]
+    }
+  },
+  "comparative": {
+    "label": "competitor comparison",
+    "patterns": {
+      "en": ["\\bvs\\.?\\b", "than (?:other|competing|leading|ordinary)", "competitors?", "other brands"],
+      "de": ["als (?:andere|herkömmliche|die Konkurrenz)", "Konkurrenz", "Wettbewerber", "im Vergleich zu"],
+      "fr": ["que les autres", "concurren", "par rapport à", "comparé à"],
+      "ja": ["他社", "競合", "他の製品より"],
+      "zh-Hans": ["竞品", "同类产品", "其他品牌", "友商"]
+    }
+  },
+  "guarantee": {
+    "label": "guarantee / refund promise",
+    "patterns": {
+      "en": ["money[- ]back", "lifetime warranty", "\\bguarantee\\b", "\\brefund"],
+      "de": ["Geld[- ]zurück", "Garantie", "lebenslang"],
+      "fr": ["satisfait ou remboursé", "\\bgarantie\\b", "rembours"],
+      "ja": ["返金", "全額保証", "永久保証"],
+      "zh-Hans": ["退款", "包退", "终身保修", "假一赔"]
+    }
+  },
+  "timeSensitive": {
+    "label": "time-sensitive wording",
+    "patterns": {
+      "en": ["\\bnew\\b", "\\blatest\\b", "just launched", "20\\d\\d model"],
+      "de": ["\\bneu\\b", "neueste", "brandneu"],
+      "fr": ["\\bnouveaut", "dernier modèle", "vient de sortir"],
+      "ja": ["新発売", "最新", "20\\d\\dモデル"],
+      "zh-Hans": ["新品", "最新", "新款", "上新"]
+    }
+  },
+  "green": {
+    "label": "generic environmental claim",
+    "patterns": {
+      "en": ["eco[- ]?friendly", "environmentally friendly", "\\bsustainable", "\\bgreen\\b", "carbon[- ]neutral", "climate[- ]neutral", "biodegradable"],
+      "de": ["umweltfreundlich", "nachhaltig", "klimaneutral", "CO2-neutral", "biologisch abbaubar", "ökologisch"],
+      "fr": ["écologique", "respectueux de l.environnement", "\\bdurable\\b", "neutre en carbone", "biodégradable"],
+      "ja": ["エコ", "環境に優しい", "サステナブル", "カーボンニュートラル", "生分解"],
+      "zh-Hans": ["环保", "绿色", "可持续", "碳中和", "可降解", "零碳"]
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "_baseFacts": ["商品名 / 型号", "颜色 / 规格（有实拍的才列）", "尺寸 / 重量", "材质 / 表面处理", "内容物", "使用 / 安装方式", "注意事项 / 限制"],
+  "motorcycle-parts": {
+    "name": "摩托车周边 / 改装件",
+    "doc": "references/categories/motorcycle-parts.md",
+    "facts": ["适配车型 / 年份 / 适配条件（管径、取付穴、ステー形状）", "认证（車検対応 / 保安基準 / E-mark / ABE / DOT）", "防水 / 耐荷重 / 耐热等性能及测试依据"],
+    "sourceRequired": {
+      "*": ["IP\\s*\\d\\d", "\\bE-?mark\\b", "(?-i:\\b(?:ECE|DOT)\\b)"],
+      "en": ["street[- ]legal", "waterproof", "load capacity", "max(?:imum)? load", "heat[- ]resistant", "\\bUV\\b", "patent"],
+      "de": ["StVZO", "(?-i:\\bABE\\b)", "TÜV", "wasserdicht", "Traglast", "hitzebeständig", "Patent"],
+      "fr": ["homologu", "étanche", "charge max", "résistant à la chaleur", "brevet"],
+      "ja": ["車検対応", "保安基準", "JIS", "防水", "耐荷重", "耐熱", "UVカット", "特許"],
+      "zh-Hans": ["认证", "防水", "承重", "耐高温", "专利"]
+    },
+    "restricted": {
+      "label": "aftermarket part implying OEM / genuine",
+      "patterns": {
+        "en": ["\\bOEM\\b", "genuine part", "factory part"],
+        "de": ["Originalteil", "Originalersatzteil", "Erstausrüster"],
+        "fr": ["pièce d.origine", "pièce constructeur"],
+        "ja": ["純正"],
+        "zh-Hans": ["原厂", "原装"]
+      }
+    }
+  },
+  "electronics": {
+    "name": "3C 电子 / 配件",
+    "doc": "references/categories/electronics.md",
+    "facts": ["兼容设备 / 接口 / 协议（PD、QC、Qi2、蓝牙版本）及兼容清单出处", "输入 / 输出 / 容量（W、mAh、Wh）及测试条件", "认证（PSE / 技適 / CE / UKCA / FCC / Qi2 / MFi）与编号", "防护等级（IP）/ 跌落测试及测试条件", "电池类型与运输限制（航空携带、Wh）"],
+    "sourceRequired": {
+      "*": ["(?-i:\\b(?:PSE|CE|FCC|UKCA|UL|ETL|RoHS|Qi2?|MFi)\\b)", "IP\\s*\\d\\d", "MIL-STD", "\\d+(?:\\.\\d+)?\\s*(?:mAh|Wh|W)\\b", "MagSafe", "Made for (?:iPhone|iPad)"],
+      "en": ["certified", "waterproof", "fast[- ]charg", "drop[- ]tested", "airline[- ]approved", "TSA"],
+      "de": ["zertifiziert", "wasserdicht", "Schnellladen", "fallgetestet", "flugtauglich"],
+      "fr": ["certifié", "étanche", "charge rapide", "testé contre les chutes", "autorisé en avion"],
+      "ja": ["技適", "防水", "防塵", "急速充電", "認証", "機内持ち込み"],
+      "zh-Hans": ["认证", "防水", "快充", "跌落测试", "可带上飞机"]
+    },
+    "restricted": {
+      "label": "absolute safety / universal compatibility claim",
+      "patterns": {
+        "en": ["military[- ]grade", "never overheats", "explosion[- ]proof", "100\\s*%\\s*safe", "works with (?:all|every)", "universal(?:ly)? compatible"],
+        "de": ["militärische Qualität", "Militärstandard", "überhitzt nie", "explosionssicher", "mit allen Geräten"],
+        "fr": ["qualité militaire", "ne chauffe jamais", "anti-explosion", "compatible avec tous"],
+        "ja": ["軍用", "ミリタリーグレード", "発熱しない", "爆発しない", "すべての機種に対応", "全機種対応"],
+        "zh-Hans": ["军工", "军规", "绝不发热", "永不爆炸", "兼容所有", "全兼容"]
+      }
+    }
+  },
+  "beauty": {
+    "name": "美妆 / 个护",
+    "doc": "references/categories/beauty.md",
+    "facts": ["全成分（INCI）与关键成分含量", "容量（ml / g）", "适用肤质 / 发质与使用方法", "功效说法及依据（测试机构、条件、样本数、时长）", "法规分类（化粧品 / 医薬部外品 / 特殊化妆品 / 化妆品 vs 药品）", "保质期 / 开封后使用期限（PAO）", "认证（有机、纯素、无动物实验）与编号"],
+    "sourceRequired": {
+      "*": ["SPF\\s*\\d+", "(?-i:PA\\++)", "\\d+(?:\\.\\d+)?\\s*%"],
+      "en": ["dermatologist[- ]tested", "clinically", "hypoallergenic", "non[- ]comedogenic", "organic", "\\bnatural\\b", "\\bvegan\\b", "cruelty[- ]free", "fragrance[- ]free", "paraben[- ]free"],
+      "de": ["dermatologisch getestet", "klinisch", "hypoallergen", "nicht komedogen", "\\bBio\\b", "Naturkosmetik", "vegan", "tierversuchsfrei", "\\bLSF\\s*\\d+", "parabenfrei"],
+      "fr": ["testé dermatologiquement", "sous contrôle dermatologique", "cliniquement", "hypoallergénique", "non comédogène", "\\bbio\\b", "naturel", "vegan", "non testé sur les animaux", "sans parabène"],
+      "ja": ["アレルギーテスト済", "皮膚科医", "臨床", "ノンコメドジェニック", "オーガニック", "無添加", "パラベンフリー"],
+      "zh-Hans": ["皮肤科", "临床", "低敏", "不致痘", "有机", "天然", "纯植物", "零添加", "无添加"]
+    },
+    "restricted": {
+      "label": "medical / drug-like efficacy claim (cosmetics usually cannot say this; quasi-drug / special cosmetics only with the approved wording)",
+      "patterns": {
+        "en": ["\\bcures?\\b", "\\btreats?\\b", "\\bheals?\\b", "eliminates? (?:acne|wrinkles|scars)", "removes? wrinkles", "anti[- ]inflammatory", "regrows?", "medical[- ]grade", "botox"],
+        "de": ["heilt", "behandelt", "beseitigt Falten", "entzündungshemmend", "medizinisch", "Botox"],
+        "fr": ["guérit", "soigne", "\\btraite\\b", "élimine les rides", "anti-inflammatoire", "médical", "botox"],
+        "ja": ["治る", "治す", "治療", "シミが消え", "シワが消え", "ニキビが治", "美白", "若返", "アンチエイジング", "医療"],
+        "zh-Hans": ["治疗", "治愈", "消炎", "祛痘", "祛斑", "美白", "去皱", "医用", "药用", "激素"]
+      }
+    }
+  },
+  "other": {
+    "name": "其他品类（按 _template.md 先补品类笔记）",
+    "doc": "references/categories/_template.md",
+    "facts": [],
+    "sourceRequired": {
+      "*": ["IP\\s*\\d\\d"],
+      "en": ["certified", "waterproof", "patent"],
+      "de": ["zertifiziert", "wasserdicht", "Patent"],
+      "fr": ["certifié", "étanche", "brevet"],
+      "ja": ["認証", "防水", "特許"],
+      "zh-Hans": ["认证", "防水", "专利"]
+    }
+  }
+}
